@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var chofer=["Pep","Juan","Tomeu"];
+        var camion=["volvo","Scania","Man","Iveco"];
+
+        
+        for(let i=0;i<52;i++){
+            escrito+="Semana"+(i+1)+":";
+            for(let j=0;j<chofer.length;j++){
+            escrito+=chofer[j]+ " conduce " + camion[(j+i)%camion.length]+"|";
+            }
+            console.log(escrito);
+            escrito="";
+        }
+
+        // for(let i=0;i<52;i++){
+        //     console.log("Semana"+(i+1)+":"+chofer[0]+ " conduce " + camion[(i)%4]+"|"+chofer[1]+ " " + camion[(1+i)%4]+"|"+chofer[2]+ " " + camion[(2+i)%4]+"|");
+            
+        // }
+    </script>
+</body>
+</html>

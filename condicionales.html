@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condicionales</title>
+</head>
+<body>
+    <script>
+        /*
+        Condicionales
+        
+        if(condicion ){
+            ....
+        }else{
+            ....
+        }
+            */
+        var a = (3==3)?"si":"no";
+        console.log(a);
+        /*
+        switch(expresion){
+            case a:...;break;
+            case b:...;break;
+            default:....;*/
+        var b = 3 
+        var c = 5;
+        switch(b + "hola"){
+            case 2:console.log('el resultado es 2');break;
+            default: console.log('ERROR');
+            /* Crear el juego carea o cruz.
+            Nosotros siempre seremos cara que será el número 1
+            El programa tienes que decidir un número aleatorio entre 1 y 2.
+            Si sale uno ganamos, si sale  2 perderemos.
+            MATH.RANDOM*/
+        var yo = 1;
+        var numeroAleatorio = Math.round(Math.random());
+        if(yo ==numeroAleatorio){
+            console.log("Has ganado");
+        }else{
+            cosole.log("Has perdido");
+        }
+
+        }
+
+    </script>
+</body>
+</html>

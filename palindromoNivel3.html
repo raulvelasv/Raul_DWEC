@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let palabra = 'An á';
+        palabra = palabra.toLowerCase();
+        let newPalabra = '';
+        let palabra2='';
+        for(let i=0;i<palabra.length;i++){
+            if(palabra[i]!=" "){
+                newPalabra=palabra[i]+newPalabra;
+                palabra2=palabra2+palabra[i];
+            }
+        }
+        let input3 ='';
+        let inputReverse3='';
+        for(let i=0;i<palabra2.length;i++){
+            if(palabra2[i]=="á"){
+                input3=input3+'a';
+                inputReverse3='a'+inputReverse3;
+            }else if(palabra2[i]=="é"){
+                input3=input3+'e';
+                inputReverse3='e'+inputReverse3;
+            }else if(palabra2[i]=="í"){
+                input3=input3+'i';
+                inputReverse3='i'+inputReverse3;
+            }else if(palabra2[i]=="ó"){
+                input3=input3+'o';
+                inputReverse3='o'+inputReverse3;
+            }else if(palabra2[i]=="ú"){
+                input3=input3+'u';
+                inputReverse3='u'+inputReverse3;
+            }else{
+                input3=input3+palabra2[i];
+                inputReverse3=palabra2[i]+inputReverse3;
+            }
+        }
+        if(input3==inputReverse3){
+            console.log('Es palindroma');
+        }else{
+            console.log('No es palindroma')
+        }
+    </script>
+</body>
+</html>

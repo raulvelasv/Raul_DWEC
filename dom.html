@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <script>
+        function Marca(nombre){
+            this.nombre = nombre;
+        }
+        function Modelo(marca,nombre){
+            this.marca = marca;
+            this.nombre = nombre;
+        }
+        var ford = new Marca('Ford');
+        var toyota = new Marca('Toyota');
+        var mercedes = new Marca('Mercedes');
+
+        var mustang = new Modelo(ford,'Mustang');
+        var corolla = new Modelo(toyota,'Corolla');
+        var yaris = new Modelo(toyota,'Yaris');
+        var a45 = new Modelo(mercedes,'A45');
+        var modelos = [];
+        modelos.push(mustang);
+        modelos.push(corolla);
+        modelos.push(yaris);
+        modelos.push(a45);
+        document.querySelector("body").innerHTML = '<p>' + mustang.marca.nombre+' '+mustang.nombre +'</p>';
+        //ex2 tabla con coches
+        /*
+            table
+                tr
+                    th marca / th
+                    th modelo /th
+                tr
+        */
+        var tableHTML = '<table><tr><th>Marca</th><th>Modelo</th></tr>';
+
+        for (i = 0; i < modelos.length; i++) {
+            tableHTML += `<tr><td>${modelos[i].marca.nombre}</td><td>${modelos[i].nombre}</td></tr>`;
+        }
+        tableHTML += '</table>';
+        document.querySelector("body").style('backgroundColor:red').innerHTML = tableHTML;
+
+        
+        
+    </script>
+</body>
+</html>

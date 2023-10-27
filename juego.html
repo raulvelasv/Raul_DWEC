@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*Crear un juego de dados. El dado debe aceptar un numero variable de caras.
+        Cara Cruz = 2 caras
+        Parxis = 6 caras
+        Rol = 12 caras
+- Crear un objeto dado con una propiedad 'numCaras' y una función será 'tirarDado' que sacará un número aleatorio entre 1 y numCaras.
+- Usuario siempre juega con 1
+Si sale 1 gana, sino pierde.*/
+        
+        
+    function Dado(numCaras) {
+        this.numCaras = numCaras;
+        this.tirarDado = function () {
+            return Math.floor(Math.random() * this.numCaras) + 1;
+        };
+    }
+
+    const caraCruz = new Dado(2);
+    const parxis = new Dado(6);
+    const rol = new Dado(12);
+
+    function jugarDado(dado) {
+        const resultado = dado.tirarDado();
+        if (resultado === 1) {
+            console.log("¡Ganaste!");
+        } else {
+            console.log("Perdiste. El resultado fue " + resultado);
+        }
+    }
+
+console.log("\nJugando a Cara Cruz:");
+jugarDado(caraCruz);
+
+console.log("Jugando a Parxis:");
+jugarDado(parxis);
+
+
+
+console.log("\nJugando a Rol:");
+jugarDado(rol);
+
+    </script>
+</body>
+</html>

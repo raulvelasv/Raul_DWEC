@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="historial()">Historial</button>
+    <button onclick="abrirVentana()">abrir ventana</button>
+    <button onclick="cerrarVentana()">cerrar ventana</button>
+    <button onclick="refrescar()">refrescar</button>
+    <button onclick="quienEres()"> Quién eres?</button>
+
+    <script>
+    
+        // alert("Hola");
+        function historial(){
+            history.go(-2);
+        }
+        let ventana;
+        function abrirVentana(){
+            ventana = open('https://www.cifpfbmoll.eu/','Borja','width=250','height=200');
+        }
+        function cerrarVentana(){
+            if(ventana){
+                ventana.close();
+            }
+            
+        }
+
+        function refrescar (){
+            location.reload();
+        }
+
+        function quienEres(){
+            let nombre = prompt("¿Quien eres?");
+            if(nombre == "Raul"){
+                alert("Hola Raul");
+            }else{
+                alert("No te conozco");
+            }
+        }    
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="saludo" id = 'primero'>Hola</p>
+    <p class="saludo">Que</p>
+    <p >Tal</p>
+    <script>
+        //1- cambiar la palabra hola por adios ponerla de azul
+        var  primero = document.querySelector('#primero');
+        primero.innerHTML='Adiós'
+        primero.style.color = 'red';
+        //Pintar la clase saludo de rojo y back-ground amarillo
+        //. para clase # para id
+        var saludo = document.querySelectorAll('.saludo');
+        for(var i = 0;i<saludo.length;i++){
+            saludo[i].style.color = 'red';
+            saludo[i].style.backgroundColor='yellow'
+        }
+        //3 Añadir a la palabra tal  un "?" 
+        //Concatenar un interrogante sin volver a escribir tal
+        document.querySelector('p:nth-child(3)').innerHTML+='?';
+        // Añadir foto delante de Adios
+        // Y PONERLE UN TAMAÑO DE 100 PIXELS DE ANCHO
+        // var imagen = document.createElement('img');
+        // imagen.src='https://www.gourmetkebab.es/wp-content/uploads/2021/04/kebab-que-es.jpg';
+        //imagen.style.width = "100px;"
+        //primero.style.
+        primero.innerHTML = '<img src="https://www.gourmetkebab.es/wp-content/uploads/2021/04/kebab-que-es.jpg" width = 100px>'+ primero.innerHTML;
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // juego cara o cruz. Nosotros siempre seremos cara que será el número 1. 
+        // El programa tiene que decidir un número aleatorio entre 1 y 2. 
+        // Si sale 1 ganamos, si sale 2 perdemos. 
+        var yo = 1;
+        console.log("Has elegido cara");
+        var numeroAleatorio = Math.round(Math.random())+1;
+        
+        if(yo == numeroAleatorio){
+            console.log("Ha salido cara.")
+            console.log("Has ganado");
+        }else{
+            console.log("Ha salido cruz")
+            console.log("Has perdido");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let palabra = 'ae      i  ea';
+        palabra = palabra.toLowerCase();
+        let newPalabra = '';
+        let palabra2='';
+        for(let i=0;i<palabra.length;i++){
+            if(palabra[i]!=" "){
+                newPalabra=palabra[i]+newPalabra;
+                palabra2=palabra2+palabra[i];
+            }
+        }
+        if(palabra2==newPalabra){
+            console.log('Es palindroma');
+        }else{
+            console.log('No es palindroma')
+        }
+    </script>
+</body>
+</html>
