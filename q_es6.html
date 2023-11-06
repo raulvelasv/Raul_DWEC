@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        ES5-> 2009
+        ES -> 2015
+        ES -> 2023()
+        ES 13 -< 2023
+        */
+        /*
+        let -declarar variable
+        const -declara constantes o variables que nose puede sobrescribir
+       */
+        const z = [];
+        z.push('hola');
+        z.push('adios');
+
+        const pep = {
+            name: 'Pep',
+            surname: 'Toni'
+        }
+        pep.name = 'Toni';
+        //pep={name:'Joan'};
+        /*
+        usar const:
+        mas rapido que let 
+        aseguras de que el tipo no cambie (tipo estatico )
+        evita problemas de inicialización
+        const a;
+        a =4;
+        */
+
+        // diferencia var y let/const
+        // diferencia principal es el  Scope
+        // var --> ámbito de función. Sino declaras hoisting
+        // let/const --> ambito de bloque
+
+
+        function vanilla() {
+            for (var i = 0; i < 5; i++) {
+                var j = i + 3;
+                console.log("i", i, "j", j);
+            }
+            console.log("final i", i, "final j", j);
+        }
+        function vanilla() {
+            for (var i = 0; i < 5; i++) {
+                var j = i + 3;
+                console.log("i", i, "j", j);
+            }
+            console.log("final i", i, "final j", j);
+        }
+        function es6() {
+            for (let i = 0; i < 5; i++) {
+                let j = i + 3;
+                console.log("i", i, "j", j);
+            }
+            console.log("final i", i, "final j", j);
+        }
+        //hoisting
+        function hoisting() {
+            var h1 = 'no hoisted';
+            h2 = 'hoisted';
+            console.log('hoist', h1, h2);
+        }
+        function hoist2() {
+            console.log('host2', h1);
+        }
+
+
+        function qa() {
+            //arguments <--- numero de argumentos
+            //son valores
+            //CLOUSURES
+        }
+        function clousure(a, b) {
+            function esnclousure1(x, y) {
+                return x + y;
+            }
+            function esnclousure2(x, y) {
+                return x * y;
+            }
+            return esnclousure1(a, b) - esnclousure2(a, b);
+        }
+        console.log(clousure(3, 4));
+        setTimeout(function () {
+            clousure(6, 7);
+        }, 1000)
+        setTimeout(() => {
+            clousure(6, 7);
+        }, 1000)
+        function suma(a, b) {
+            return a + b;
+        }
+        function multiplica(a, b) {
+            return a * b;
+        }
+        function operacion(a, b, cb) {
+            return cb(a, b);
+        }
+        console.log(operacion(3,4,suma));
+        console.log(operacion(3,4,multiplica));
+        console.log(operacion(3,4,function(a,b){
+            return a-b;
+        }));
+        console.log(operacion(3,4,(a,b)=>a-b))
+
+
+
+
+    </script>
+</body>
+
+</html>

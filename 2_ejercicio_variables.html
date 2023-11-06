@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        objeto 'matematicas'
+        propiedad pi Math.PI
+        función 'suma' que admite 'n' valores 
+        function suma(){
+            arguments[0]==3;
+            arguments[1]==47;
+            arguments[2]==6;
+        }
+        suma(3,47,6);
+        funcion 'multiplica' que tiene que admitir ' n'
+        valores. La función multiplica debe añadirse despues de crear el objeto
+        resolver las operaciones:
+        4+5+PI+3*4*7
+        4*PI*8*(12+4+7)
+
+        */
+        const mates = {
+            pi: Math.PI,
+            suma: function () {
+                console.log(arguments);
+                if (arguments) {
+                    let resultado = 0;
+                    for (let i = 0; i < arguments.length; i++) {
+                        resultado += arguments[i];
+                    }
+                    return resultado;
+                }
+                return 0;
+            },
+            multiplica: function () {
+                console.log(arguments);
+                if (arguments) {
+                    let resultado = 1;
+                    for (let i = 0; i < arguments.length; i++) {
+                        resultado *= arguments[i];
+                    }
+                    return resultado;
+                }
+                return 0;
+            }
+        }
+
+        const op = mates.suma(3, 4, 5)
+        const op2 = mates.multiplica(3, 5);
+        const op3 = mates.multiplica(4,mates.pi,8,mates.suma(3,4));
+        console.log(op3);
+    </script>
+</body>
+
+</html>
