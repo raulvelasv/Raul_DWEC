@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="hotels-list"></div>
+
+    <script>
+        fetch("http://34.90.153.139/ejercicios/hotelinfo.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+
+        })
+            .then((r) => r.json())
+            .then((respuesta) => {
+                console.log(respuesta);
+            });
+
+
+    </script>
+</body>
+
+</html>

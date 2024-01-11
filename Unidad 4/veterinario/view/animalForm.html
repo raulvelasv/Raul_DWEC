@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Nombre</label>
+    <input type="text" name="nombre">
+    <label>Sexo</label>
+    <input type="radio" name="sexo" value="H">
+    <label>H</label>
+
+    <input type="radio" name="sexo" value="M">
+    <label>M< /label>
+            <label>Nombre de registro</label>
+            <input type="text" name="numreg">
+            <script type="module">
+                import { getAnimal } from "../service/AnimalService.js"
+
+                function init() {
+                    const url = new URLSearchParams(window.location.search);
+                    let idAnimal = url.get("identificador");
+                    console.log(idAnimal)
+                    if (idAnimal) {
+                        const animal = getAnimal(parseInt(idAnimal));
+                        document.querySelector("input[name='nombre']").value = animal.name;
+                        document.querySelector("input[name='numreg']").value = animal.registynumber;
+                        document.querySelector("input[name='sexo'][value='" + animal.sex + "']").checked = true;
+                    }
+                }
+                // window.addEventListener("load", init);
+                (function () {
+                    init();
+                })();
+            </script>
+</body>
+
+</html>

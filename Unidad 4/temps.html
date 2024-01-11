@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temps</title>
+</head>
+
+<body>
+    <script>
+        // var nepe = setInterval(() => {
+        //     console.log("hola");
+        // }, 3000);
+        // setTimeout(() => {
+        //     clearInterval(nepe);
+        // }, 7000);
+
+        /******************************************/
+        // var x = setInterval(() => {
+        //     console.log('hello');
+        // }, 1000); //2000
+        // setTimeout(() => {
+        //     clearInterval(x);
+        // }, 6000); //6000
+
+        /******************************************/
+        // let i = 0;
+        // function incremento() {
+        //     i++;
+        //     console.log(i);
+        // }
+        // const incrementoTimer = setInterval(incremento, 2000);
+        // setInterval(() => {
+        //     clearInterval(incrementoTimer);
+        // }, 6000)
+
+        /******************************************/
+
+        // var x = setInterval(() => {
+        //     var y = setInterval(() => {
+        //         var z = setInterval(() => {
+        //             console.log("hello")
+        //             clearInterval(x)
+        //             clearInterval(y)
+        //         }, 1000);
+        //     }, 3000);
+        // }, 7000);
+        // /******************************************/
+        // var i = 0;
+        // function examen() {
+        //     setTimeout(() => {
+        //         if (i <= 3) {
+        //             examen2();
+        //         }
+        //     }, 2000); //2000 veces 3: 3s 6s 9s
+        // }
+        // function examen2() {
+        //     setTimeout(() => {
+        //         console.log("hello")
+        //         i++;
+        //         examen();
+        //     }, 1000);
+        // }
+        // examen();
+
+        /******************************************/
+        // var x = 0;
+        // function greeting() {
+        //     console.log('Hello');
+        // }
+        // while (x === 0) {
+        //     setTimeout(greeting, 3000);
+        //     x = 1;
+        // }
+
+        // /******************************************/
+        // let k = 0;
+        // function incremento() {
+        //     k++;
+        //     console.log(k);
+        // }
+        // setInterval(incremento, 2000);
+
+        // /******************************************/
+        let i = 0;
+        function increment() {
+            i++;
+            console.log(i);
+        }
+        let timer = setTimeout(function myTimer() {
+            increment();
+            timer = setTimeout(myTimer, 1000);
+        }, 1000);
+
+        /*
+        Espera x ms y ejecuta el codigo periodicamente
+        let intervalo =  setInterval(function, ms)
+
+        clearInterval(intervalo)
+
+        Ejecuta la funcion pasado x ms
+        setTimeout(function, ms)
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*Promise objeto para representar un
+        comportamiento asíncrono 3 estados*/
+        const x = new Promise(function (resolve, rejected) {
+
+        });
+        /*
+    x estará pending hasta que se llame a resolve o reject 
+    cuando acaba la promesa se llama al metodo :
+    then si ha finalizado bien (resolve)
+    catch si ah ido mal (rejected)
+    */
+        const wait = new Promise(function (resolve, rejected) {
+            setTimeout(function () {
+                resolve("Finalizó bien");
+
+            }, 5000)
+        }).then(function (valor) {
+            console.log("Ha entrado en el then ", valor);
+        });
+        console.log(wait);
+        fetch("http://34.90.153.139/ejercicios/color.php?min=100&max=400", {
+            method: 'GET'
+        })
+            .then(function (respuesta1) {
+                return respuesta1.json();
+            })
+            .then(function (respuesta2) {
+                console.log("Respuesta 2", respuesta2);
+            })
+            .catch(function (error) {
+                console.error("Error:", error);
+            });
+
+    </script>
+
+</body>
+*
+
+</html>

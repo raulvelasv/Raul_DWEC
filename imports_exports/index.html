@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     Esto es una página de matemáticas
     <button onclick="printme()">click me</button>
-        <script src = "Mates.js"></script>
-    <script src = "MatesBinarias.js"></script>
-    <script>
-        import {suma,multiplica} from'./Mates.js';
-        import {sumaBinm,multiplica as multibin} from'./MatesBinarias.js';
+    <!-- <script src="./Mates.js"></script>
+    <script src="./MatesBinarias.js"></script> -->
+    <script type="module">
+        import { suma, multiplica } from './Mates.js';
+        import { sumaBin, multiplica as multibin } from './MatesBinarias.js';
 
-        console.log(suma(4,7));
-        console.log(multibin(3,4));
+        console.log(suma(4, 7));
+        console.log(multibin(3, 4));
         //console.log(sumaBin(4,7));
         /*Que es un modulo de JS?
         Es un fichero que exporta explicitamente items de JS(variables,funciones, clases...)
@@ -29,11 +31,12 @@
         script como modulo 
         OJOO!! el DOM no tiene 
          */
-        function printme(){
+        function printme() {
             console.log("Hello world");
         }
         window.printme = printme;
         document.querySelector("#botonbueno")
     </script>
 </body>
+
 </html>

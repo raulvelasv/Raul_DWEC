@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>colors</h1>
+    <div id="cuadrado"></div>
+    <script>
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const obj = JSON.parse(this.responseText);
+                console.log(obj);
+                document.querySelector("body").style.backgroundColor = obj.background;
+                document.getElementById("cuadrado").style.backgroundColor = obj.color;
+                document.getElementById("cuadrado").style.width = obj.width + "px";
+                document.getElementById("cuadrado").style.height = obj.height + "px";
+            }
+        };
+        xhttp.open("GET", "http://34.90.153.139/ejercicios/color.php?min=100&max=400", true);
+        xhttp.send();
+    </script>
+</body>
+
+</html>

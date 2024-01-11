@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+#imagenesCartas {
+    border: 1px solid #000; /* Borde con un grosor de 1 píxel y color negro */
+    padding: 20px; /* Espaciado interno de 20 píxeles alrededor del contenedor */
+    background-color: #f0f0f0; /* Color de fondo gris claro */
+    text-align: center; /* Centra el contenido horizontalmente */
+}
+#imagenesCartas img {
+    max-width: 100%; /* Las imágenes no superarán el ancho del contenedor */
+    height: 200px; /* Mantiene la proporción de aspecto de las imágenes */
+    margin: 10px; /* Espaciado entre las imágenes */
+}
+</style>
+
+<body>
+    <button onclick="abrirVentana()">Jugar</button>
+    <button onclick="tancarPrograma()">Tancar Programa</button>
+    <div id=imagenesCartas></div>
+    <script>
+        let poker = ["3_of_clubs.png", "3_of_diamonds.png", "3_of_spades.png", "4_of_clubs.png", "4_of_diamonds.png", "4_of_spades.png",
+            "5_of_clubs.png", "5_of_diamonds.png", "5_of_hearts.png", "6_of_hearts.png", "7_of_spades.png", "8_of_clubs.png", "8_of_hearts.png",
+            "9_of_clubs.png", "9_of_spades.png", "10_of_clubs.png", "10_of_hearts.png", "ace_of_diamonds.png", "ace_of_spades.png", "jack_of_diamonds2.png",
+            "king_of_clubs2.png", "king_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png", "red_joker.png", "2_of_spades.png", "3_of_hearts.png",
+            "4_of_hearts.png", "5_of_spades.png", "6_of_clubs.png", "6_of_diamonds.png", "6_of_spades.png", "7_of_clubs.png", "7_of_diamonds.png", "7_of_hearts.png",
+            "8_of_diamonds.png", "8_of_spades.png", "9_of_diamonds.png", "9_of_hearts.png", "10_of_diamonds.png", "10_of_spades.png", "ace_of_clubs.png",
+            "ace_of_hearts.png", "black_joker.png", "jack_of_clubs2.png", "jack_of_hearts2.png", "jack_of_spades2.png", "king_of_hearts2.png", "king_of_spades2.png",
+            "queen_of_clubs2.png", "queen_of_diamonds2.png", "2_of_clubs.png", "2_of_diamonds.png", "2_of_hearts.png"];
+        function abrirVentana(){
+            const nuevaVentana = window.open('', 'Juego de Cartas', 'width=800,height=600');
+
+            // Contenido de la nueva ventana
+            nuevaVentana.document.open();
+            nuevaVentana.document.write(`
+                <button onclick="jugarPoker()">Jugar</button>
+                <button onclick="cerrarVentana()">Cerrar ventana</button>
+                <div id="imagenesCartas"></div>
+            `);
+            nuevaVentana.document.close();
+        function jugarPoker(){
+            let mangaCartas = [];
+            var imagenesCartas = nuevaVentana.document.getElementById("imagenesCartas");
+            imagenesCartas.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                let indiceCartaAleatoria = Math.floor(Math.random() * (poker.length - 1));
+                let cartaAleatoria = poker[indiceCartaAleatoria];
+                mangaCartas.push(cartaAleatoria);
+                poker.splice(indiceCartaAleatoria, 1);
+                var carta = nuevaVentana.document.createElement("img");
+                carta.src = "cards/" + cartaAleatoria;
+                imagenesCartas.appendChild(carta);
+            }
+            
+            pareja(mangaCartas);
+            function pareja(mangaCartas) {
+                for (let i = 0; i < mangaCartas.length - 1; i++) {
+                    for (let j = i + 1; j < mangaCartas.length; j++) {
+                        if (mangaCartas[i].substring(0, 3) == mangaCartas[j].substring(0, 3)) {
+                            return console.log("Has conseguido una pareja");
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+        
+
+    </script>
+    
+</body>
+
+</html>

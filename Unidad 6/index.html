@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obtener Coordenadas</title>
+</head>
+
+<body>
+
+    <script>
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                console.log("Latitud:", lat);
+                console.log("Longitud:", lon);
+                console.log("Posición:", position);
+            });
+        } else {
+            console.log("Geolocalización no es compatible con este navegador.");
+        }
+
+    </script>
+
+</body>
+
+</html>

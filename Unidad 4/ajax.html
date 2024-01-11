@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Myfirst AJAX</h1>
+    <!-- <div id="resultadoget">Aqui pondremos el get</div>
+    <div id="resultadopost">Aqui pondremos el post</div>
+    <div id="resultadomultiple">Aqui pondremos el multiple</div> -->
+    <div id="resultado"></div>
+
+    <script>
+
+        // /*AJAX -Que es ?
+        // Ajax significa 'Asynchronous JavaScript Anda XMl'
+        // Tecnología inventada por Microsoft para realizar 
+        // comunicaron ASÍNCRONA  con nuestras webs
+        // ex
+        // animals.html  --> servidor
+        // objeto animal-- > 'JSON'
+
+        // cons animal = getAnimals();
+        // for (let i = 0; i < animals.length; i++) {
+
+        //     //XMLHttpRequest <-- Obejeto que invento Microsoft
+        //     1 - Refrescar una parte del DOM
+        //     http://95.39.145.183/asincrono.php?num=1
+        //     http://95.39.145.183/asincrono2.php
+        // }   
+        // * /
+
+
+
+        // var xhttp = new XMLHttpRequest();
+        // xhttp.onreadystatechange = function () {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         console.log(this.responseText);
+        //         document.getElementById("resultadoget").innerHTML = this.responseText;
+        //     } else {
+        //         console.log("El estado es ", this.readyState);
+        //     }
+        // };
+        // xhttp.open("GET", "http://95.39.145.183/asincrono.php?num=1", true);
+        // xhttp.send();
+
+        // var xhttp2 = new XMLHttpRequest();
+        // xhttp2.onreadystatechange = function () {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         console.log(this.responseText);
+        //         document.getElementById("resultadopost").innerHTML = this.responseText;
+        //     } else {
+        //         console.log("El estado es ", this.readyState);
+        //     }
+        // };
+        // xhttp2.open("POST", "http://95.39.145.183/asincrono2.php", true);
+        // xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhttp2.send("num=2");
+
+        // document.getElementById("resultadomultiple").innerHTML = "";
+        // for (let i = 1; i < 10; i++) {
+        //     var xhttp3 = new XMLHttpRequest();
+        //     xhttp3.onreadystatechange = function () {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //             console.log(this.responseText);
+        //             document.getElementById("resultadomultiple").innerHTML += this.responseText + "<br>";
+        //         } else {
+        //             console.log("El estado es ", this.readyState);
+        //         }
+        //     };
+        //     xhttp3.open("POST", "http://95.39.145.183/asincrono2.php", true);
+        //     xhttp3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        //     xhttp3.send("num=" + i);
+        // }
+        const promises = [];
+        const url = "http://34.90.153.139/ejercicios/asincrono.php?num=";
+        for (let i = 1; i < 11; i++) {
+            const promise = fetch(url + i).then(r => r.text());
+            promises.push(promise);
+        }
+        Promise.all(promises).then(arrayResponse => {
+            arrayResponse.forEach(response => {
+                document.getElementById("resultado").innerHTML += response + '<br>'
+            });
+        })
+    </script>
+</body>
+
+</html>

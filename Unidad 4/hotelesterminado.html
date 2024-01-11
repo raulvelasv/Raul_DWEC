@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div id="contenedor-botones"></div> -->
+    <div id="contenedor-botones"></div>
+    <div id="hotel-info"></div>
+    <script>
+        fetch("http://34.90.153.139/ejercicios/hoteles.php")
+            .then((r) => r.json())
+            .then((respuesta) => {
+                console.log(respuesta);
+                const contenedor = document.getElementById("contenedor-botones");
+                const infoContainer = document.getElementById("hotel-info");
+
+                for (let i = 0; i < respuesta.length; i++) {
+                    const elemento = respuesta[i].id;
+                    const boton = document.createElement("button");
+                    boton.innerHTML = "Hotel " + elemento;
+                    contenedor.appendChild(boton);
+
+                    boton.addEventListener("click", () => {
+                        fetch("http://34.90.153.139/ejercicios/hotelinfo.php", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded",
+                            },
+                            body: "id=" + elemento,
+                        })
+                            .then((r2) => r2.json())
+                            .then((respuesta2) => {
+                                console.log("Respuesta para el hotel con ID", elemento, ":", respuesta2);
+
+                                // Display hotel information in a table
+                                const table = document.createElement("table");
+                                const tbody = document.createElement("tbody");
+
+                                for (const key in respuesta2) {
+                                    const row = document.createElement("tr");
+                                    const cell1 = document.createElement("td");
+                                    const cell2 = document.createElement("td");
+
+                                    cell1.textContent = key;
+                                    cell2.textContent = respuesta2[key];
+
+                                    row.appendChild(cell1);
+                                    row.appendChild(cell2);
+                                    tbody.appendChild(row);
+                                }
+
+                                table.appendChild(tbody);
+                                infoContainer.innerHTML = "";
+                                infoContainer.appendChild(table);
+                            });
+                    });
+                }
+            });
+    </script>
+</body>
+
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="contenedor-botones"></div>
+    <div id="hotel-info"></div>
+    <script>
+        fetch("http://34.90.153.139/ejercicios/hoteles.php")
+            .then((r) => r.json())
+            .then((respuesta) => {
+                console.log(respuesta);
+                const contenedor = document.getElementById("contenedor-botones");
+                const infoContainer = document.getElementById("hotel-info");
+
+                for (let i = 0; i < respuesta.length; i++) {
+                    const elemento = respuesta[i].id;
+                    const boton = document.createElement("button");
+                    boton.innerHTML = "Hotel " + elemento;
+                    contenedor.appendChild(boton);
+
+                    boton.addEventListener("click", () => {
+                        fetch("http://34.90.153.139/ejercicios/hotelinfo.php", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded",
+                            },
+                            body: "id=" + elemento,
+                        })
+                            .then((r2) => r2.json())
+                            .then((respuesta2) => {
+                                console.log("Respuesta para el hotel con ID", elemento, ":", respuesta2);
+
+                                // Display hotel information in a table
+                                const table = document.createElement("table");
+
+                                for (const key in respuesta2) {
+                                    const row = document.createElement("tr");
+                                    const cell1 = document.createElement("td");
+                                    const cell2 = document.createElement("td");
+
+                                    cell1.textContent = key;
+                                    cell2.textContent = respuesta2[key];
+
+                                    row.appendChild(cell1);
+                                    row.appendChild(cell2);
+                                    table.appendChild(row);
+                                }
+
+                                infoContainer.innerHTML = "";
+                                infoContainer.appendChild(table);
+                            });
+                    });
+                }
+            });
+    </script>
+</body>
+
+</html> -->

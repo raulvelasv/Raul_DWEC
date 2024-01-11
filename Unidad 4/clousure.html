@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function suma(numeroInicial) {
+        //     return function (otroNumero) {
+        //         return numeroInicial + otroNumero;
+        //     };
+        // }
+        // console.log(suma(5)(3));
+        // console.log(suma(3)(7));
+        (function suma1(numeroInicial) {
+            return function (otroNumero) {
+                return console.log(numeroInicial + otroNumero);
+            }(5)
+        }(3))
+
+    </script>
+</body>
+
+</html>

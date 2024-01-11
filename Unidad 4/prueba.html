@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        Crear una tabla en html
+        URL:http://95.39.145.183/ejercicios/usuarios.php
+            http://34.147.66.205/ejercicios/usuarios.php
+        method:GET
+        response:JSON
+
+        Tabla:Username, name, surname, y sex
+        */
+        // var http = new XMLHttpRequest();
+        // http.onreadystatechange = function () {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         const obj = JSON.parse(this.responseText);
+        //         console.log(obj);
+        //     }
+        // }
+        // http.open('GET', 'http://95.39.145.183/ejercicios/usuarios.php?username="Velasquez"&name="Raul"', true)
+        // http.send();
+        const wait = new Promise(function (resolve, rejected) {
+            setTimeout(() => {
+                resolve("Finalizó bien");
+            }, (5000));
+        }).then(function (valor) {
+            console.log("Ha entrado en el then ", valor);
+        });
+        fetch('http://95.39.145.183/ejercicios/usuarios.php?username="Velasquez"&name="Raul"', {
+            method: 'GET'
+        })
+            .then(function (respuesta1) {
+                return respuesta1.json();
+            })
+            .then(function (respuesta2) {
+                console.log("Respuesta 2", respuesta2);
+                const tabla = document.createElement("TABLE");
+                const trHeader = document.createElement("TR");
+                tabla.appendChild(trHeader);
+                const thName = document.createElement("TH");
+                thName.innerHTML = "Name";
+                trHeader.appendChild(thName);
+
+                const thSurname = document.createElement("TH");
+                thSurname.innerHTML = "Surname";
+                trHeader.appendChild(thSurname);
+
+                const thSex = document.createElement("TH");
+                thSex.innerHTML = "Sex";
+                trHeader.appendChild(thSex);
+
+                for (let i = 0; i < respuesta2.length; i++) {
+                    const tr = document.createElement("TR");
+
+                    const tdName = document.createElement("TD");
+                    tdName.innerHTML = respuesta2[i].name;
+                    tr.appendChild(tdName);
+
+                    const tdSurname = document.createElement("TD");
+                    tdSurname.innerHTML = respuesta2[i].username;
+                    tr.appendChild(tdSurname);
+
+                    const tdSex = document.createElement("TD");
+                    tdSex.innerHTML = respuesta2[i].sex;
+                    tr.appendChild(tdSex);
+                    tabla.appendChild(tr);
+                }
+                document.body.appendChild(tabla);
+            })
+            .catch(function (error) {
+                console.log("Error:", error);
+            });
+
+    </script>
+</body>
+
+</html>

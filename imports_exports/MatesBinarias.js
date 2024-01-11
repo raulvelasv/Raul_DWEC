@@ -1,6 +1,6 @@
-function sumaBin(a,b){
+export function sumaBin(a, b) {
     return a | b;
 }
-function multiplica(a,b){
+export function multiplica(a, b) {
     return a & b;
 }

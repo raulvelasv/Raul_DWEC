@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="resultado"></div>
+    <script>
+        function getColor() {
+            fetch("http://34.90.153.139/ejercicios/color.php?min=30&max=50")
+                .then((r) => r.json())
+                .then((respuesta) => {
+                    console.log("REspuesta sin AsaW", respuesta);
+                })
+        }
+        async function getColorConASyncAWAit() {
+            const colorFetch = await fetch("http://34.90.153.139/ejercicios/asincrono.php?num=1")
+            const color = await colorFetch.json();
+            console.log("Respuesta con ASaw", color);
+        }
+        getColor();
+        async function asincronoConAsync() {
+            for (let i = 0; i < 10; i++) {
+                const colorFetch = await fetch("http://34.90.153.139/ejercicios/asincrono.php?num=" + i);
+                const numero = await colorFetch.text();  // Fix the variable name here
+                document.getElementById("resultado").innerHTML += numero + "<br>";
+            }
+        }
+        function asincronoSinAwait() {
+            for (let i = 0; i < 10; i++) {
+                fetch("http://34.90.153.139/ejercicios/asincrono.php?num=" + i)
+                    .then((r) => r.text())
+                    .then((respuesta) => {
+                        document.getElementById("resultado").innerHTML += respuesta + "<br>";
+                    });
+            }
+        }
+
+        asincronoConAsync();
+        asincronoSinAwait();
+
+
+    </script>
+</body>
+
+</html>

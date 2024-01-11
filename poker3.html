@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #imagenesCartas {
+        border: 1px solid #000;
+        padding: 20px;
+        background-color: #f0f0f0;
+        text-align: center;
+    }
+
+    #imagenesCartas img {
+        max-width: 100%;
+        height: 200px;
+        margin: 10px;
+    }
+</style>
+
+<body>
+    <button onclick="abrirVentana()">Jugar</button>
+    <button onclick="tancarPrograma()">Tancar Programa</button>
+    <div id="imagenesCartas"></div>
+    <script>
+        let poker = ["3_of_clubs.png", "3_of_diamonds.png", "3_of_spades.png", "4_of_clubs.png", "4_of_diamonds.png", "4_of_spades.png",
+            "5_of_clubs.png", "5_of_diamonds.png", "5_of_hearts.png", "6_of_hearts.png", "7_of_spades.png", "8_of_clubs.png", "8_of_hearts.png",
+            "9_of_clubs.png", "9_of_spades.png", "10_of_clubs.png", "10_of_hearts.png", "ace_of_diamonds.png", "ace_of_spades.png", "jack_of_diamonds2.png",
+            "king_of_clubs2.png", "king_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png", "red_joker.png", "2_of_spades.png", "3_of_hearts.png",
+            "4_of_hearts.png", "5_of_spades.png", "6_of_clubs.png", "6_of_diamonds.png", "6_of_spades.png", "7_of_clubs.png", "7_of_diamonds.png", "7_of_hearts.png",
+            "8_of_diamonds.png", "8_of_spades.png", "9_of_diamonds.png", "9_of_hearts.png", "10_of_diamonds.png", "10_of_spades.png", "ace_of_clubs.png",
+            "ace_of_hearts.png", "black_joker.png", "jack_of_clubs2.png", "jack_of_hearts2.png", "jack_of_spades2.png", "king_of_hearts2.png", "king_of_spades2.png",
+            "queen_of_clubs2.png", "queen_of_diamonds2.png", "2_of_clubs.png", "2_of_diamonds.png", "2_of_hearts.png"];
+
+            var ventanaJuego;
+
+function jugarPoker() {
+    // Abre una nueva ventana
+    ventanaJuego = window.open("", "VentanaJuego", "width=800, height=300");
+
+    // Luego, dentro de la ventana emergente, puedes realizar las acciones necesarias
+    let mangaCartas = [];
+    var imagenesCartas = ventanaJuego.document.createElement("div");
+    imagenesCartas.id = "imagenesCartas";
+    ventanaJuego.document.body.appendChild(imagenesCartas);
+
+    imagenesCartas.innerHTML = '';
+
+    for (let i = 0; i < 5; i++) {
+        let indiceCartaAleatoria = Math.floor(Math.random() * (poker.length - 1));
+        let cartaAleatoria = poker[indiceCartaAleatoria];
+        mangaCartas.push(cartaAleatoria);
+        poker.splice(indiceCartaAleatoria, 1);
+        var carta = ventanaJuego.document.createElement("img");
+        carta.src = "cards/" + cartaAleatoria; // Ruta a las imágenes
+        imagenesCartas.appendChild(carta);
+    }
+
+    // Agrega un botón en la ventana emergente para refrescar la página
+    var refrescarBoton = ventanaJuego.document.createElement("button");
+    refrescarBoton.innerHTML = "Refrescar";
+    refrescarBoton.onclick = function () {
+        ventanaJuego.location.reload(); // Refresca la página para mostrar una solución diferente
+    };
+    ventanaJuego.document.body.appendChild(refrescarBoton);
+
+    // Agrega un botón para cerrar la ventana de juego
+    var cerrarVentanaBoton = ventanaJuego.document.createElement("button");
+    cerrarVentanaBoton.innerHTML = "Cerrar Ventana de Juego";
+    cerrarVentanaBoton.onclick = function () {
+        ventanaJuego.close(); // Cierra la ventana de juego
+    };
+    ventanaJuego.document.body.appendChild(cerrarVentanaBoton);
+}
+
+// Obtén los elementos de los botones en la ventana principal
+var cerrarVentanaJuegoBoton = document.getElementById("cerrarVentanaJuego");
+var cerrarProgramaBoton = document.getElementById("cerrarPrograma");
+
+// Asigna manejadores de eventos para cerrar la ventana de juego y cerrar todo el programa
+cerrarVentanaJuegoBoton.addEventListener("click", function () {
+    if (ventanaJuego) {
+        ventanaJuego.close(); // Cierra la ventana de juego si está abierta
+    }
+});
+
+cerrarProgramaBoton.addEventListener("click", function () {
+    window.close(); // Cierra la ventana principal (el programa)
+});
+    </script>
+
+</body>
+
+</html>

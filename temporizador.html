@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador</title>
+</head>
+
+<body>
+    <h1>Temporizador</h1>
+    <span id="temporizador">00:00:00</span>
+    <br>
+    <label for="tiempo">Tiempo en segundos:</label>
+    <input type="number" id="tiempo">
+    <br>
+    <button id="play" onclick="play()">Iniciar</button>
+    <button id="pause" onclick="pause()">Pausar</button>
+    <button id="stop" onclick="stop()">Detener</button>
+
+    <script>
+        var temporizadorStart;
+        var temporizadorPaused = 0;
+        var interval;
+
+        function play() {
+            var tiempoTotal = parseInt(document.getElementById('tiempo').value) * 1000;
+            temporizadorStart = Date.now() - temporizadorPaused;
+
+            interval = setInterval(function () {
+                var tiempoTranscurrido = Date.now() - temporizadorStart;
+                var tiempoRestante = tiempoTotal - tiempoTranscurrido;
+
+                if (tiempoRestante <= 0) {
+                    clearInterval(interval);
+                    document.querySelector("#temporizador").innerHTML = '00:00:00';
+                } else {
+                    var dateDif = new Date(tiempoRestante);
+                    var result = "";
+                    result += dateDif.getHours() - 1;
+                    result += ":"
+                    result += dateDif.getMinutes();
+                    result += ":"
+                    result += dateDif.getSeconds();
+                    document.querySelector("#temporizador").innerHTML = result;
+                }
+            }, 1000);
+        }
+
+        function pause() {
+            clearInterval(interval);
+            temporizadorPaused = Date.now() - temporizadorStart;
+        }
+
+        function stop() {
+            clearInterval(interval);
+            document.querySelector("#temporizador").innerHTML = '00:00:00';
+            temporizadorPaused = 0;
+        }
+    </script>
+</body>
+
+</html>

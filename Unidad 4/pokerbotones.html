@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker</title>
+</head>
+
+<body>
+    <button id="btnCartasKing">PINTAR CARTAS KING</button>
+    <button id="btnLimpiar">limpiar</button>
+    <button id="btnCartasKingOQueen">PINTAR CARTAS KING O QUEEN</button>
+    <button id="btnCartasNumeros">PINTAR CARTAS NUMEROS</button>
+    <button id="btnNoJackOrQueen">PINTAR CARTAS NO JACK O QUEEN</button>
+    <button id="btnNoNumeros">PINTAR CARTAS NO NUMEROS</button>
+    <div id="cartas"></div>
+
+    <script>
+        let cards = [
+            "2_of_clubs.png",
+            "2_of_diamonds.png",
+            "2_of_hearts.png",
+            "2_of_spades.png",
+            "3_of_clubs.png",
+            "3_of_diamonds.png",
+            "3_of_hearts.png",
+            "3_of_spades.png",
+            "4_of_clubs.png",
+            "4_of_diamonds.png",
+            "4_of_hearts.png",
+            "4_of_spades.png",
+            "5_of_clubs.png",
+            "5_of_diamonds.png",
+            "5_of_hearts.png",
+            "5_of_spades.png",
+            "6_of_clubs.png",
+            "6_of_diamonds.png",
+            "6_of_hearts.png",
+            "6_of_spades.png",
+            "7_of_clubs.png",
+            "7_of_diamonds.png",
+            "7_of_hearts.png",
+            "7_of_spades.png",
+            "8_of_clubs.png",
+            "8_of_diamonds.png",
+            "8_of_hearts.png",
+            "8_of_spades.png",
+            "9_of_clubs.png",
+            "9_of_diamonds.png",
+            "9_of_hearts.png",
+            "9_of_spades.png",
+            "10_of_clubs.png",
+            "10_of_diamonds.png",
+            "10_of_hearts.png",
+            "10_of_spades.png",
+            "ace_of_clubs.png",
+            "ace_of_diamonds.png",
+            "ace_of_hearts.png",
+            "ace_of_spades.png",
+            "ace_of_spades2.png",
+            "black_joker.png",
+            "jack_of_clubs.png",
+            "jack_of_clubs2.png",
+            "jack_of_diamonds.png",
+            "jack_of_diamonds2.png",
+            "jack_of_hearts.png",
+            "jack_of_hearts2.png",
+            "jack_of_spades.png",
+            "jack_of_spades2.png",
+            "king_of_clubs.png",
+            "king_of_clubs2.png",
+            "king_of_diamonds.png",
+            "king_of_diamonds2.png",
+            "king_of_hearts.png",
+            "king_of_hearts2.png",
+            "king_of_spades.png",
+            "king_of_spades2.png",
+            "queen_of_clubs.png",
+            "queen_of_clubs2.png",
+            "queen_of_diamonds.png",
+            "queen_of_diamonds2.png",
+            "queen_of_hearts.png",
+            "queen_of_hearts2.png",
+            "queen_of_spades.png",
+            "queen_of_spades2.png",
+            "red_joker.png",
+        ];
+
+        const cartas = document.getElementById('cartas');
+        const btnCartasKing = document.getElementById('btnCartasKing');
+        const btnLimpiar = document.getElementById('btnLimpiar');
+        const btnCartasKingOQueen = document.getElementById('btnCartasKingOQueen');
+        const btnCartasNumeros = document.getElementById('btnCartasNumeros');
+        const btnNoJackOrQueen = document.getElementById('btnNoJackOrQueen');
+        const btnNoNumeros = document.getElementById('btnNoNumeros');
+
+        function pintarCartasKing() {
+            cartas.innerHTML = "";
+            for (let i = 0; i < cards.length; i++) {
+                if (cards[i].substring(0, 4) == "king") {
+                    cartas.innerHTML += " " + cards[i] + "<br>";
+                }
+            }
+        }
+
+        function limpiar() {
+            cartas.innerHTML = "";
+        }
+
+        function pintarCartasKingOQueen() {
+            cartas.innerHTML = "";
+            for (let i = 0; i < cards.length; i++) {
+                if (cards[i].substring(0, 4) == "king" || cards[i].substring(0, 5) == "queen") {
+                    cartas.innerHTML += " " + cards[i] + "<br>";
+                }
+            }
+        }
+
+        function pintarCartasNumeros() {
+            cartas.innerHTML = "";
+            for (let i = 0; i < cards.length; i++) {
+                if (!isNaN(cards[i][0])) {
+                    cartas.innerHTML += " " + cards[i] + "<br>";
+                }
+            }
+        }
+
+        function pintarNoJackOrQueen() {
+            cartas.innerHTML = "";
+            for (let i = 0; i < cards.length; i++) {
+                if (cards[i].substring(0, 4) !== "jack" && cards[i].substring(0, 5) !== "queen") {
+                    cartas.innerHTML += " " + cards[i] + "<br>";
+                }
+            }
+        }
+
+        function pintarNoNumeros() {
+            cartas.innerHTML = "";
+            for (let i = 0; i < cards.length; i++) {
+                if (isNaN(cards[i][0])) {
+                    cartas.innerHTML += " " + cards[i] + "<br>";
+                }
+            }
+        }
+
+        btnCartasKing.addEventListener('click', pintarCartasKing);
+        btnLimpiar.addEventListener('click', limpiar);
+        btnCartasKingOQueen.addEventListener('click', pintarCartasKingOQueen);
+        btnCartasNumeros.addEventListener('click', pintarCartasNumeros);
+        btnNoJackOrQueen.addEventListener('click', pintarNoJackOrQueen);
+        btnNoNumeros.addEventListener('click', pintarNoNumeros);
+    </script>
+</body>
+
+</html>

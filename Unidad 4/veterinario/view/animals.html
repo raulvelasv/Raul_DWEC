@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import { getAnimals } from "../service/AnimalService.js";
+        function pintar(animals) {
+            let table = "<table>";
+            table += "<tr>";
+            table += "<th>Nombre</th>";
+            table += "<th>Ficha</th>";
+            table += "</tr>";
+
+            document.querySelector("body").innerHTML = table;
+            animals.No
+            for (let i = 0; i < animals.length; i++) {
+                table += "<tr>";
+                table += "<th>" + animals[i].name + "</th>";
+                table += "<th><a href= 'animalForm.html?identificador=" + animals[i].id + "'>ficha</th>";
+                table += "</tr>";
+            }
+            table += "</table>";
+            document.querySelector("body").innerHTML = table;
+        }
+        function init() {
+            const animals = getAnimals();
+            pintar(animals);
+        }
+
+        window.addEventListener("load", init);
+
+    </script>
+
+</body>
+
+</html>

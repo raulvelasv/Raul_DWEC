@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="jugarPoker()">Jugar</button>
+    <div id=imagenesCartas></div>
+    <script>
+        let poker = ["3_of_clubs.png", "3_of_diamonds.png", "3_of_spades.png", "4_of_clubs.png", "4_of_diamonds.png", "4_of_spades.png",
+            "5_of_clubs.png", "5_of_diamonds.png", "5_of_hearts.png", "6_of_hearts.png", "7_of_spades.png", "8_of_clubs.png", "8_of_hearts.png",
+            "9_of_clubs.png", "9_of_spades.png", "10_of_clubs.png", "10_of_hearts.png", "ace_of_diamonds.png", "ace_of_spades.png", "jack_of_diamonds2.png",
+            "king_of_clubs2.png", "king_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png", "red_joker.png", "2_of_spades.png", "3_of_hearts.png",
+            "4_of_hearts.png", "5_of_spades.png", "6_of_clubs.png", "6_of_diamonds.png", "6_of_spades.png", "7_of_clubs.png", "7_of_diamonds.png", "7_of_hearts.png",
+            "8_of_diamonds.png", "8_of_spades.png", "9_of_diamonds.png", "9_of_hearts.png", "10_of_diamonds.png", "10_of_spades.png", "ace_of_clubs.png",
+            "ace_of_hearts.png", "black_joker.png", "jack_of_clubs2.png", "jack_of_hearts2.png", "jack_of_spades2.png", "king_of_hearts2.png", "king_of_spades2.png",
+            "queen_of_clubs2.png", "queen_of_diamonds2.png", "2_of_clubs.png", "2_of_diamonds.png", "2_of_hearts.png"];
+        console.log(poker.length);
+        let mangaCartas = [];
+        var imagenesCartas = document.getElementById("imagenesCartas");
+        
+        
+        for (let i = 0; i < 5; i++) {
+            let indiceCartaAleatoria = Math.floor(Math.random() * (poker.length - 1));
+            let cartaAleatoria = poker[indiceCartaAleatoria];
+            mangaCartas.push(cartaAleatoria);
+            poker.splice(indiceCartaAleatoria, 1);
+            var carta = document.createElement("img");
+            carta.src = "cards/" + cartaAleatoria;
+            imagenesCartas.appendChild(carta);
+        
+        }
+        console.log(mangaCartas)
+        pareja(mangaCartas);
+        function pareja(mangaCartas) {
+            for (let i = 0; i < mangaCartas.length - 1; i++) {
+                for (let j = i+1; j < mangaCartas.length; j++) {
+                    if (mangaCartas[i].substring(0, 3) == mangaCartas[j].substring(0, 3)) {
+                        return console.log("Has conseguido una pareja");
+                    }
+                }
+            }
+        }
+        
+
+
+
+    </script>
+</body>
+
+</html>

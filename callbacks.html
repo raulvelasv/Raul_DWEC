@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <span id = "crono">00:00:00</span>
+    <span id="crono">00:00:00</span>
     <br>
-    <button id="play" onclick ="play()">Play</button>
-    <button id="pause" onclick ="pause()">pause</button>
-    <button id="stop" onclick ="stop()">stop</button>
+    <button id="play" onclick="play()">Play</button>
+    <button id="pause" onclick="pause()">pause</button>
+    <button id="stop" onclick="stop()">stop</button>
 
     <script>
-        var crono ;
+        var crono;
         var cronoDif;
         var interval;
         function play() {
-        
             crono = Date.now();
-            interval = setInterval(function(){
+            interval = setInterval(function () {
                 cronoDif = Date.now();
                 var dif = cronoDif - crono;
                 var dateDif = new Date(dif);
                 var result = "";
-                result += dateDif.getHours()-1;
+                result += dateDif.getHours() - 1;
                 result += ":"
                 result += dateDif.getMinutes();
                 result += ":"
                 result += dateDif.getSeconds();
                 result += ":"
                 result += dateDif.getMilliseconds();
-                
                 document.querySelector("#crono").innerHTML = result;
-            },100);
+            }, 100);
         }
-        function pause(){
+        function pause() {
             clearInterval(interval);
         }
-        function stop(){
+        function stop() {
             clearInterval(interval);
-            document.querySelector("#crono").innerHTML='00:00:00';
+            document.querySelector("#crono").innerHTML = '00:00:00';
         }
         /*
         CALLBACK
         Que es una función de callback?
         es una función que , por parámetro , se pasa la especificación
     */
-    function hello(){
-        return "Hello";
-    }
-    function bye(){
-        return "bye";
-    }
-    /*
-    nombre: string
-    tipo: función de callback
-    */
-    function saluda (nombre, tipo ){
-    return tipo ()+" "+nombre;
-    }
-    console.log(saluda("Alex",hello));
-    console.log(saluda("Rafa",bye));
-    console.log(saluda("Toni",function(){
-        return "hasta luego"
-    }))
-    
-    setTimeout(() => {
-        console.log("3 segundos");
-    }, 3000);
+        function hello() {
+            return "Hello";
+        }
+        function bye() {
+            return "bye";
+        }
+        /*
+        nombre: string
+        tipo: función de callback
+        */
+        function saluda(nombre, tipo) {
+            return tipo() + " " + nombre;
+        }
+        console.log(saluda("Alex", hello));
+        console.log(saluda("Rafa", bye));
+        console.log(saluda("Toni", function () {
+            return "hasta luego"
+        }))
 
-    /*EVENTOS
-    QUE ES UN EVETNO
-    Una función que se ejecuta después de que el usuario realice 
-    una acción en concreto /click , doble click , scroll...
-    cómo 
-    1 HTML -><p onACCION="">
-    <p onclcick ? "hola()">*/
+        setTimeout(() => {
+            console.log("3 segundos");
+        }, 3000);
+
+        /*EVENTOS
+        QUE ES UN EVETNO
+        Una función que se ejecuta después de que el usuario realice 
+        una acción en concreto /click , doble click , scroll...
+        cómo 
+        1 HTML -><p onACCION="">
+        <p onclcick ? "hola()">*/
     </script>
     <p>Hola que tal si me clickas me vuelvo rojo</p>
     <script>
 
-        function pinta(){
+        function pinta() {
             document.querySelector("p").style.color = 'red';
         }
 
-        document.querySelector("p").addEventListener("click",pinta);
+        document.querySelector("p").addEventListener("click", pinta);
         var parrafos = document.querySelectorAll("p");
 
         // for(var i = 0;i<parrafos.length;i++){
@@ -97,10 +97,10 @@
         setTimeout(funcion,ms);
         espera X ms y ejecuta la función peridodicamenete 
         set Interval(función, ms);
-
         */
-            
+
 
     </script>
 </body>
+
 </html>

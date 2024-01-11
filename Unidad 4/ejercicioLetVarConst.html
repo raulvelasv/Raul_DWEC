@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function ejercicio1() {
+        //     if (true) {
+        //         var a = 5;
+        //         let b = 10;
+        //         const c = 15;
+        //     }
+
+        //     console.log(a); // 5
+        //     // console.log(b); // Comenta o descomenta esta línea según tu predicción. error
+        //     // console.log(c); // Comenta o descomenta esta línea según tu predicción. error
+        // }
+
+        // ejercicio1();
+
+        // for (var i = 0; i < 3; i++) {
+        //     console.log(i);
+        // }
+        // console.log(i);
+
+
+
+        +
+            // function ejercicio3() {
+            //     const PI = 3.14159;
+            //     // PI = 3; // Comenta o descomenta esta línea según tu predicción PI
+            //     console.log(PI);
+            // }
+
+            //ejercicio3();
+            // Con let
+            function ejemploConLet() {
+                let x = 2;
+                console.log("Dentro del bloque con let:", x);
+                {
+                    let x = 4;
+                    console.log("Dentro del bloque anidado con let:", x);
+                }
+                console.log("Fuera del bloque con let:", x);
+            }
+
+        // Con var
+        function ejemploConVar() {
+            var x = 2;
+            console.log("Dentro del bloque con var:", x);
+            {
+                var x = 4;
+                console.log("Dentro del bloque anidado con var:", x);
+            }
+            console.log("Fuera del bloque con var:", x);
+        }
+        function ejemploConConst() {
+            const y = 2;
+            console.log("Dentro del bloque con var:", y);
+
+            {
+                const y = 4;
+                console.log("Dentro del bloque anidado con var:", y);
+            }
+            console.log("Fuera del bloque con var:", y);
+        }
+        // Llamamos a las funciones
+        console.log("Ejemplo con let:");
+        ejemploConLet();
+
+        console.log("\nEjemplo con var:");
+        ejemploConVar();
+
+        console.log("Ejemplo con const:");
+        ejemploConConst();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Cartas</title>
+</head>
+<style>
+#imagenesCartas {
+    border: 1px solid #000; 
+    padding: 20px; 
+    background-color: #f0f0f0; 
+    text-align: center; 
+}
+#imagenesCartas img {
+    max-width: 100%; 
+    height: 200px; 
+    margin: 10px; /
+}
+</style>
+<body>
+    <button onclick="abrirVentanaEmergente()">Jugar</button>
+    <script>
+        
+        let poker = ["3_of_clubs.png", "3_of_diamonds.png", "3_of_spades.png", "4_of_clubs.png", "4_of_diamonds.png", "4_of_spades.png",
+            "5_of_clubs.png", "5_of_diamonds.png", "5_of_hearts.png", "6_of_hearts.png", "7_of_spades.png", "8_of_clubs.png", "8_of_hearts.png",
+            "9_of_clubs.png", "9_of_spades.png", "10_of_clubs.png", "10_of_hearts.png", "ace_of_diamonds.png", "ace_of_spades.png", "jack_of_diamonds2.png",
+            "king_of_clubs2.png", "king_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png", "red_joker.png", "2_of_spades.png", "3_of_hearts.png",
+            "4_of_hearts.png", "5_of_spades.png", "6_of_clubs.png", "6_of_diamonds.png", "6_of_spades.png", "7_of_clubs.png", "7_of_diamonds.png", "7_of_hearts.png",
+            "8_of_diamonds.png", "8_of_spades.png", "9_of_diamonds.png", "9_of_hearts.png", "10_of_diamonds.png", "10_of_spades.png", "ace_of_clubs.png",
+            "ace_of_hearts.png", "black_joker.png", "jack_of_clubs2.png", "jack_of_hearts2.png", "jack_of_spades2.png", "king_of_hearts2.png", "king_of_spades2.png",
+            "queen_of_clubs2.png", "queen_of_diamonds2.png", "2_of_clubs.png", "2_of_diamonds.png", "2_of_hearts.png"];
+        
+        let mangaCartas = [];
+
+        function abrirVentanaEmergente() {
+            const ventanaEmergente = window.open('', '', 'width=600, height=300');
+            ventanaEmergente.document.write('<style>#imagenesCartas {border: 1px solid #000; padding: 20px; background-color: #f0f0f0; text-align: center; }#imagenesCartas img {max-width: 100%; height: 200px;  margin: 10px; /}</style><h1>Cartas Generadas</h1>');
+            
+            jugarJuego(ventanaEmergente);
+        }
+
+        function limpiarCartas(ventanaEmergente) {
+            let imagenesCartas = ventanaEmergente.document.getElementById("imagenesCartas");
+            if (imagenesCartas) {
+                imagenesCartas.innerHTML = '';
+            }
+        }
+
+        function jugarJuego(ventanaEmergente) {
+            if (poker.length < 5) {
+                ventanaEmergente.document.write('<p>No quedan más cartas en el mazo.</p>');
+                return;
+            }
+            
+            limpiarCartas(ventanaEmergente);
+            
+            mangaCartas = [];
+            let imagenesCartas = ventanaEmergente.document.createElement("div");
+            imagenesCartas.id = "imagenesCartas";
+            ventanaEmergente.document.body.appendChild(imagenesCartas);
+
+            for (let i = 0; i < 5; i++) {
+                let indiceCartaAleatoria = Math.floor(Math.random() * poker.length);
+                let cartaAleatoria = poker.splice(indiceCartaAleatoria, 1)[0];
+                mangaCartas.push(cartaAleatoria);
+                let carta = ventanaEmergente.document.createElement("img");
+                carta.src = "cards/" + cartaAleatoria;
+                imagenesCartas.appendChild(carta);
+            }
+
+            if (tienePareja()) {
+                ventanaEmergente.document.write('<p>¡Has conseguido una pareja!</p>');
+            }else{
+                ventanaEmergente.document.write('<p>No has conseguido una pareja :(!</p>');
+            }
+                let jugarButton = ventanaEmergente.document.createElement("button");
+                jugarButton.innerText = "Jugar";
+                jugarButton.onclick = function () {
+                    jugarJuego(ventanaEmergente);
+                };
+                ventanaEmergente.document.body.appendChild(jugarButton);
+            
+        }
+
+        function tienePareja() {
+            for (let i = 0; i < mangaCartas.length - 1; i++) {
+                for (let j = i + 1; j < mangaCartas.length; j++) {
+                    if (mangaCartas[i].substring(0, 3) == mangaCartas[j].substring(0, 3)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>

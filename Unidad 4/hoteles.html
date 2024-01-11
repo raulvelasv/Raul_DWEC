@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div id="contenedor-botones"></div> -->
+    <script>
+        fetch("http://34.90.153.139/ejercicios/hoteles.php")
+            .then((r) => r.json())
+            .then((respuesta) => {
+                console.log(respuesta);
+                // const contenedor = document.getElementById("contenedor-botones")
+                const contenedor = document.createElement("div");
+                contenedor.id = "contenedor-botones";
+                document.body.appendChild(contenedor);
+                for (let i = 0; i < respuesta.length; i++) {
+                    const elemento = respuesta[i].id;
+                    const boton = document.createElement("button");
+                    boton.innerHTML = "Hotel " + elemento;
+                    contenedor.appendChild(boton);
+
+
+                    fetch("http://34.90.153.139/ejercicios/hotelinfo.php", {
+
+                        method: "POST",  // Especifica el método POST
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        body: "id=" + (i + 1)
+                    })
+                        .then((r2) => r2.json())
+                        .then((respuesta2) => {
+                            console.log("Respuesta para el hotel con ID", elemento, ":", respuesta2);
+
+                        })
+                }
+
+            })
+
+
+    </script>
+</body>
+
+</html>

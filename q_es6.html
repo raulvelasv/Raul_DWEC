@@ -31,8 +31,8 @@
         //pep={name:'Joan'};
         /*
         usar const:
-        mas rapido que let 
-        aseguras de que el tipo no cambie (tipo estatico )
+        mas rápido que let 
+        aseguras de que el tipo no cambie (tipo estático )
         evita problemas de inicialización
         const a;
         a =4;
@@ -41,7 +41,7 @@
         // diferencia var y let/const
         // diferencia principal es el  Scope
         // var --> ámbito de función. Sino declaras hoisting
-        // let/const --> ambito de bloque
+        // let/const --> ámbito de bloque
 
 
         function vanilla() {
@@ -79,7 +79,7 @@
         function qa() {
             //arguments <--- numero de argumentos
             //son valores
-            //CLOUSURES
+            //CLOSURES
         }
         function clousure(a, b) {
             function esnclousure1(x, y) {
@@ -106,12 +106,12 @@
         function operacion(a, b, cb) {
             return cb(a, b);
         }
-        console.log(operacion(3,4,suma));
-        console.log(operacion(3,4,multiplica));
-        console.log(operacion(3,4,function(a,b){
-            return a-b;
+        console.log(operacion(3, 4, suma));
+        console.log(operacion(3, 4, multiplica));
+        console.log(operacion(3, 4, function (a, b) {
+            return a - b;
         }));
-        console.log(operacion(3,4,(a,b)=>a-b))
+        console.log(operacion(3, 4, (a, b) => a - b))
 
 
 

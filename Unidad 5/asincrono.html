@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        function cuadradoCallback(value, callback) {
+            setTimeout(() => {
+                callback(value, value * value);
+            }, 0 | Math.random() * 100);
+        }
+        cuadradoCallback(0, (value, result) => {
+            console.log("inicia callback")
+            console.log("callback:" + value + "," + result);
+        })
+    </script>
+</body>
+
+</html>

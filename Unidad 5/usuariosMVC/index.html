@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UsuariosMVC</title>
+</head>
+
+<body>
+    <script type="module">
+        import { getUsersFor, getUsersForEach, getUsersMap, getUsersForEachOptimized } from "./UserService.js"
+        /*
+            Crear una tabla en html de usuarios recuperando los datos de:
+            URL: http://34.90.153.139/ejercicios/usuarios.php
+            method: GET
+            response: JSON
+            usar fetch
+
+            Hacer una petición por GET que devolverá un JSON
+
+            Tabla: Username, Name, Surename y Sex
+
+            Añadir a nuestro modelo User una propiedad Transporte y llenarla la respuesta del servidor de la petición:
+            URL: http://34.90.153.139/ejercicios/transporte.php
+            method: GET
+            params: id
+            response: JSON
+
+            La id para hacer la petición de transporte viene definida en la respuesta del usuarios en la propiedad transport
+            {"iduser":1,"username":"sergio99","password":"Zuh8Ir6k","name":"Renata","surname":"Casta\u00f1eda","sex":"F","active":false,"transport":8791}
+        */
+
+        async function pintaTabla(users, titulo) {
+            const tabla = document.createElement("TABLE");
+            tabla.style.float = "left";
+            const caption = document.createElement("CAPTION");
+            caption.innerHTML = "<h1>" + titulo + "</h1>";
+            tabla.appendChild(caption);
+
+            const trHeader = document.createElement("TR");
+            tabla.appendChild(trHeader);
+
+            const thUsername = document.createElement("TH");
+            thUsername.innerHTML = "Username";
+            trHeader.appendChild(thUsername);
+
+            const thName = document.createElement("TH");
+            thName.innerHTML = "Name";
+            trHeader.appendChild(thName);
+
+            const thSurename = document.createElement("TH");
+            thSurename.innerHTML = "Surname";
+            trHeader.appendChild(thSurename);
+
+            const thSex = document.createElement("TH");
+            thSex.innerHTML = "Sex";
+            trHeader.appendChild(thSex);
+
+            const thTransporte = document.createElement("TH");
+            thTransporte.innerHTML = "Transporte";
+            trHeader.appendChild(thTransporte);
+
+            for (let i = 0; i < users.length; i++) {
+                const trData = document.createElement("TR");
+                tabla.appendChild(trData);
+
+                const tdUsername = document.createElement("TD");
+                tdUsername.innerHTML = users[i].nick;
+                trData.appendChild(tdUsername);
+
+                const tdName = document.createElement("TD");
+                tdName.innerHTML = users[i].nombre;
+                trData.appendChild(tdName);
+
+                const tdSurename = document.createElement("TD");
+                tdSurename.innerHTML = users[i].apellido;
+                trData.appendChild(tdSurename);
+
+                const tdSex = document.createElement("TD");
+                tdSex.innerHTML = users[i].sexo;
+                trData.appendChild(tdSex);
+
+                const tdTransporte = document.createElement("TD");
+                tdTransporte.innerHTML = users[i].transporte.nombre + '<img src="' + users[i].transporte.url_imagen + '">';
+                trData.appendChild(tdTransporte);
+            }
+
+            document.querySelector("body").appendChild(tabla);
+        };
+
+        /* Descomenta una o varias IIF para ejecutar sólo 
+        una o varias tecnicas de pintar la tabla */
+
+        // (async function () {
+        //     let usuarios = await getUsersFor();
+        //     pintaTabla(usuarios, "*******       for        *******");
+        // })();       
+
+        // (async function () {
+        //     let usuarios = await getUsersMap();
+        //     pintaTabla(usuarios, "*******       map        *******");
+        // })();
+
+        // (async function () {
+        //     let usuarios = await getUsersForEach();
+        //     pintaTabla(usuarios, "******       forEach     *******");
+        // })();
+
+        // (async function () {
+        //     let usuarios = await getUsersForEachOptimized();
+        //     pintaTabla(usuarios, "* forEachOptimized *");
+        // })();
+
+        (async function () {
+            pintarLaTablaConDiferentesTecnicasYMostrarLosTiemposDeEjecucion();
+        })();
+
+        async function pintarLaTablaConDiferentesTecnicasYMostrarLosTiemposDeEjecucion() {
+
+            let inicio = new Date().getTime();
+            let nombre = "*******       map        *******";
+            pintaTabla(await getUsersMap(), nombre);
+            mostrarTiempo(inicio, nombre);
+
+            inicio = new Date().getTime();
+            nombre = "******       forEach     *******";
+            pintaTabla(await getUsersForEach(), nombre);
+            mostrarTiempo(inicio, nombre);
+
+            inicio = new Date().getTime();
+            nombre = "* forEachOptimized *";
+            pintaTabla(await getUsersForEachOptimized(), nombre);
+            mostrarTiempo(inicio, nombre);
+
+            inicio = new Date().getTime();
+            nombre = "*******       for        *******";
+            pintaTabla(await getUsersFor(), nombre);
+            mostrarTiempo(inicio, nombre);
+        }
+
+        function mostrarTiempo(inicio, nombre) {
+            const fin = new Date().getTime();
+            const tiempoTranscurrido = fin - inicio;
+            console.log('Tiempo de ' + nombre + ': ' + tiempoTranscurrido + 'milisegundos');
+        }
+
+    </script>
+</body>
+
+</html>
