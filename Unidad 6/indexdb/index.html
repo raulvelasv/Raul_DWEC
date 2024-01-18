@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const customerData = [
+            { ssn: "444-44-4444", name: "Bill", age: 35, email: "bill@company.com" },
+            { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" },
+        ];
+        let request = window.indexedDB.open("Raul", 4);
+        // This event is only implemented in recent browsers
+        request.onupgradeneeded = (event) => {
+            // Save the IDBDatabase interface
+            const db = event.target.result;
+
+            // Create an objectStore for this database
+            const objectStore = db.createObjectStore("name", { keyPath: "ssn" });
+            objectStore.createIndex("name", "name", { unique: false });
+            objectStore.createIndex("email", "email", { unique: true });
+            objectStore.transaction.oncomplete = function (evento) {
+                let customerObjectStore = db
+                    .transaction("name", "readwrite")
+                    .objectStore("name");
+                for (let i in customerData) {
+                    customerObjectStore.add(customerData[i]);
+                }
+            }
+        };
+        request.onsuccess = function (evento) {
+            const db = evento.target.result;
+            const transaction = db.transaction(["name", "readwrite"]);
+            const customer = transaction.objectStore("name");
+            customer.add({
+                ssn: "777-77-777", name: "Bill", age: 35, email: "raul@gmail.com"
+            })
+        }
+
+    </script>
+</body>
+
+</html>

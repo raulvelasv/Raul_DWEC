@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Geolocalización y Google Maps</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Geolocalización y Google Maps</h1>
+    <div id="map"></div>
+    <div id="locationHistory">
+        <h2>Últimas 5 ubicaciones:</h2>
+        <ul id="historyList"></ul>
+    </div>
+
+    <script>
+        function initMap() {
+            // Inicializa el mapa
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 0, lng: 0 },
+                zoom: 14
+            });
+
+            // Obtiene la ubicación actual del usuario
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Muestra un marcador en la ubicación actual
+                    var marker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: 'Mi ubicación'
+                    });
+
+                    // Centra el mapa en la ubicación actual
+                    map.setCenter(userLocation);
+
+                    // Guarda la ubicación en el historial
+                    saveLocation(userLocation);
+
+                    // Muestra las últimas 5 ubicaciones en la lista
+                    showLocationHistory();
+                }, function () {
+                    // Manejar errores de geolocalización
+                    alert('No se pudo obtener la ubicación del usuario.');
+                });
+            } else {
+                alert('El navegador no soporta la geolocalización.');
+            }
+        }
+
+        function saveLocation(location) {
+            // Obtiene el historial de ubicaciones desde el almacenamiento local
+            var locationHistory = JSON.parse(localStorage.getItem('locationHistory')) || [];
+
+            // Agrega la nueva ubicación al historial
+            locationHistory.push(location);
+
+            // Guarda las últimas 5 ubicaciones en el almacenamiento local
+            locationHistory = locationHistory.slice(-5);
+
+            // Guarda el historial actualizado en el almacenamiento local
+            localStorage.setItem('locationHistory', JSON.stringify(locationHistory));
+        }
+
+        function showLocationHistory() {
+            // Obtiene el historial de ubicaciones desde el almacenamiento local
+            var locationHistory = JSON.parse(localStorage.getItem('locationHistory')) || [];
+
+            // Obtiene la lista donde se mostrarán las ubicaciones
+            var historyList = document.getElementById('historyList');
+
+            // Borra la lista anterior
+            historyList.innerHTML = '';
+
+            // Muestra las ubicaciones en la lista
+            locationHistory.forEach(function (location) {
+                var listItem = document.createElement('li');
+                listItem.textContent = 'Latitud: ' + location.lat + ', Longitud: ' + location.lng;
+                historyList.appendChild(listItem);
+            });
+        }
+        showLocationHistory();
+    </script>
+
+    <!-- Incluye la API de Google Maps -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkC6pbBurlf8H94KXQMUjARKy18kzm9Vw&callback=initMap">
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="color">
+    <button onclick="insertFruit()">Insertar</button>
+    <button onclick="borrarFruit()">Borra fruta</button>
+    <button onclick="updateFruit()">Actualizar fruta</button>
+    <button onclick="getFruit()">listar frutas</button>
+    <script>
+        const db = indexedDB.open("Frutas", 1);
+
+        db.onupgradeneeded = function (ev) {
+            const database = ev.target.result;
+            const frutaObjectStore = database.createObjectStore("Fruta", { keyPath: "name" });
+
+
+            frutaObjectStore.add({
+                name: 'manzana',
+
+            });
+            frutaObjectStore.add({
+                name: 'platano',
+                color: 'amarillo',
+            });
+        }
+        function insertFruit() {
+            const nombre = document.querySelector("#nombre").value;
+            const transaction = db.result.transaction(["Fruta"], "readwrite");
+            transaction.objectStore('fruta').add({
+                name: nombre
+            })
+        }
+        function borrarFruit() {
+            const nombre = document.querySelector("#nombre").value;
+            const transaction = db.result.transaction(["Fruta"], "readwrite");
+            transaction.objectStore('fruta').delete(nombre)
+        }
+        function updateFruit() {
+            const nombre = document.querySelector("#nombre").value;
+            const transaction = db.result.transaction(["Fruta"], "readwrite");
+            transaction.objectStore('fruta').put({
+                name: nombre
+            })
+        }
+        function getFruit() {
+            const transaction = db.result.transaction(["Fruta"], "readwrite");
+            const fruitTable = transaction.objectStore('fruta').getAll();
+
+            fruitTable.onsuccess = function (ev) {
+                const fruit = fruitTable.result;
+                console.log(fruit);
+            }
+        }
+    </script>
+</body>
+
+</html>
